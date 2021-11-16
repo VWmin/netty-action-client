@@ -28,25 +28,25 @@ public class CustomProtocol implements Serializable {
     @SerializedName("Content")
     private String content ;
 
-    private CustomProtocol(int type, String content){
+    private CustomProtocol(MessageType type, String content){
         this.id = UUID;
-        this.type = type;
+        this.type = type.value();
         this.content = content;
     }
 
-    private CustomProtocol(int type, String to, String content){
+    private CustomProtocol(MessageType type, String to, String content){
         this.id = UUID;
-        this.type = type;
+        this.type = type.value();
         this.to = to;
         this.content = content;
     }
 
     public static CustomProtocol msg(String to, String content){
-        return new CustomProtocol(2, to, content);
+        return new CustomProtocol(MessageType.Chat, to, content);
     }
 
     public static CustomProtocol heartBeat(String content){
-        return new CustomProtocol(1, content);
+        return new CustomProtocol(MessageType.Heartbeat, content);
     }
 
     public static CustomProtocol heartBeat(){

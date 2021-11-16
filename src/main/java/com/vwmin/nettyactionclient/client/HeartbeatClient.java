@@ -12,20 +12,20 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * 启动一个客户端，连向{@link #host}:{@link #nettyPort}
+ */
 @Slf4j
 @Component
 public class HeartbeatClient {
 
     private EventLoopGroup group = new NioEventLoopGroup();
 
-
     @Value("${netty.server.port}")
     private int nettyPort;
 
     @Value("${netty.server.host}")
     private String host;
-
-    private SocketChannel channel;
 
     @PostConstruct
     public void start() throws InterruptedException {
@@ -38,7 +38,6 @@ public class HeartbeatClient {
         if (future.isSuccess()) {
             log.info("启动 Netty 成功");
         }
-        channel = (SocketChannel) future.channel();
     }
 
 }

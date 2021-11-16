@@ -9,6 +9,10 @@ import io.netty.util.internal.ObjectUtil;
 import java.nio.charset.Charset;
 import java.util.List;
 
+/**
+ * 自定义消息类型解码器
+ * 将{@link Byte}转换为{@link CustomProtocol}
+ */
 public class CustomProtocolDecoder extends ByteToMessageDecoder {
     private final Charset charset;
 
